@@ -45,8 +45,8 @@ int main(int argc, const char* argv[])
   }
 
   //will seg fault?
-  stbi_write_jpg(("/tmp/" + filepath + ".sig.jpg").c_str(), 256, 256, 1, pixels, 90);
-  printf("Signature save to %s\n", ("/tmp/" + filepath + ".sig.jpg").c_str());
+  stbi_write_jpg((OUTPUT_DIR + filepath + ".sig.jpg").c_str(), 256, 256, 1, pixels, 90);
+  printf("Signature save to %s\n", (OUTPUT_DIR + filepath + ".sig.jpg").c_str());
     
   return 0;
 }
