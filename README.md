@@ -4,4 +4,4 @@
 
 -----------------------------------
 
-- [dump] which prints any file in c array with their size
+- [dump] which prints any file in C array with their size
