@@ -34,6 +34,16 @@ void Image_save(unsigned char* data, int w, int h, int c, const char* filepath) 
     }
 }
 
+std::string basename(const std::string& filepath)
+{
+  auto x = filepath.rfind('/');
+
+  if(x != std::string::npos)
+    return filepath.substr(x, filepath.size() - 4);
+  else
+    exit(-1);
+}
+
 int main(int argc, const char* argv[])
 {
   if(argc < 2)
@@ -43,7 +53,9 @@ int main(int argc, const char* argv[])
   }
 
   std::string filepath    = argv[1];
-  std::string file_no_ext(filepath.begin(), filepath.end() - 4);
+  
+  std::string file_no_ext = basename(filepath);
+  file_no_ext = file_no_ext.substr(0, file_no_ext.size() - 4);
   std::string ext(filepath.end() - 4, filepath.end());
 
   printf("%s\n", filepath.data());
@@ -64,7 +76,11 @@ int main(int argc, const char* argv[])
     return 0;
   }
 
-
+  for(unsigned int i = 0; i < 8; ++i)
+  {
+    Image_split(result.get(), pixels , x, y, c, i);
+    Image_save(result.get(), x, y, c, (OUPUT_DIR + file_no_ext + "." + std::to_string(i) + ext).c_str());
+  }
 
   return 0;
 }
